@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import 'package:go_router/go_router.dart';
+
 import '../../../../../core/utils/app_router.dart';
 import '../../../../../core/utils/assets.dart';
 import 'sliding_text.dart';
@@ -71,11 +73,13 @@ class _SplashViewbodyState extends State<SplashViewbody>
       const Duration(seconds: 2),
       () {
         // Get.to(() => const HomeView(),
+        //     transition: Transition.fadeIn, duration: kTranstionDuration);
+        // Get.to(() => const HomeView(),
         //     // calculations
         //     transition: Transition.fade,
         //     duration: kTranstionDuration);
 
-        //   GoRouter.of(context).push(AppRouter.kHomeView);
+        GoRouter.of(context).push(AppRouter.kHomeView);
       },
     );
   }

@@ -1,7 +1,7 @@
-import 'package:bookly/Features/home/data/models/book_model/book_model.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../core/utils/styles.dart';
+import '../../../data/models/book_model/book_model.dart';
 import 'book_rating.dart';
 import 'books_action.dart';
 import 'custom_book_item.dart';
@@ -12,7 +12,7 @@ class BookDetailsSection extends StatelessWidget {
   final BookModel book;
   @override
   Widget build(BuildContext context) {
-    var width = MediaQuery.of(context).size.width;
+    double width = MediaQuery.of(context).size.width;
 
     return Column(
       children: [
@@ -40,6 +40,7 @@ class BookDetailsSection extends StatelessWidget {
         Opacity(
           opacity: .7,
           child: Text(
+            textAlign: TextAlign.center,
             book.volumeInfo.authors?[0] ?? '',
             style: Styles.textStyle18.copyWith(
               fontStyle: FontStyle.italic,

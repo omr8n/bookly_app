@@ -1,9 +1,11 @@
-import 'package:bookly/Features/home/data/models/book_model/book_model.dart';
-import 'package:bookly/Features/home/data/repos/home_repo.dart';
-import 'package:bookly/core/utils/api_service.dart';
+import 'package:bookly_app/Features/home/data/repos/home_repo.dart';
+import 'package:bookly_app/core/utils/api_service.dart';
 import 'package:dartz/dartz.dart';
-import 'package:bookly/core/errors/failures.dart';
+
 import 'package:dio/dio.dart';
+
+import '../../../../core/errors/failures.dart';
+import '../models/book_model/book_model.dart';
 
 class HomeRepoImpl implements HomeRepo {
   final ApiService apiService;
@@ -17,11 +19,7 @@ class HomeRepoImpl implements HomeRepo {
               'volumes?Filtering=free-ebooks&Sorting=newest &q=computer science');
       List<BookModel> books = [];
       for (var item in data['items']) {
-        try {
-          books.add(BookModel.fromJson(item));
-        } catch (e) {
-          books.add(BookModel.fromJson(item));
-        }
+        books.add(BookModel.fromJson(item));
       }
 
       return right(books);

@@ -1,7 +1,9 @@
-import 'package:bloc/bloc.dart';
-import 'package:bookly/Features/home/data/models/book_model/book_model.dart';
+import 'package:bookly_app/core/errors/failures.dart';
+import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../data/models/book_model/book_model.dart';
 import '../../../data/repos/home_repo.dart';
 
 part 'newset_books_state.dart';
@@ -12,7 +14,7 @@ class NewsetBooksCubit extends Cubit<NewsetBooksState> {
   final HomeRepo homeRepo;
   Future<void> fetchNewestBooks() async {
     emit(NewsetBooksLoading());
-    var result = await homeRepo.fetchNewsetBooks();
+    Either<Failure, List<BookModel>> result = await homeRepo.fetchNewsetBooks();
     result.fold((failure) {
       emit(NewsetBooksFailure(failure.errMessage));
     }, (books) {
